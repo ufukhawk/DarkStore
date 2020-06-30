@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<view:BaseView
+    x:Class="DarkStore.View.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sharpnado="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    xmlns:view="clr-namespace:DarkStore.View"
+    Padding="20"
+    BackgroundColor="Black"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+    <ScrollView>
+        <StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Image
+                    Grid.Column="0"
+                    Source="menu"
+                    VerticalOptions="CenterAndExpand" />
+                <Label
+                    Grid.Column="1"
+                    FontSize="16"
+                    Text="Store"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand" />
+                <Image
+                    Grid.Column="2"
+                    HorizontalOptions="EndAndExpand"
+                    Source="shopping_cart"
+                    VerticalOptions="CenterAndExpand" />
+            </Grid>
+            <CollectionView
+                x:Name="categoryList"
+                HeightRequest="35"
+                HorizontalScrollBarVisibility="Never"
+                ItemsSource="{Binding CategoryModelList}"
+                SelectionMode="None"
+                VerticalOptions="Start">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="0" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Path=BindingContext.SelectGroupCommand, Source={x:Reference categoryList}}"
+                                    CommandParameter="{Binding .}"
+                                    NumberOfTapsRequired="1" />
+                            </Grid.GestureRecognizers>
+                            <Path
+                                Aspect="Uniform"
+                                Data="M 1596.553955078125 760.7130737304688 L 1607.485595703125 749.6553955078125 L 1607.485595703125 733.2265014648438 C 1607.485595703125 730.9483642578125 1605.6318359375 729.094970703125 1603.353149414062 729.094970703125 L 1505.845825195312 729.094970703125 L 1494.93505859375 740.1318969726562 L 1494.93505859375 756.5806884765625 C 1494.93505859375 758.8593139648438 1496.788452148438 760.7130737304688 1499.066528320312 760.7130737304688 L 1596.553955078125 760.7130737304688 M 1596.971557617188 761.7130737304688 L 1499.066528320312 761.7130737304688 C 1496.232666015625 761.7130737304688 1493.93505859375 759.4154663085938 1493.93505859375 756.5806884765625 L 1493.93505859375 739.7210693359375 L 1505.42822265625 728.094970703125 L 1603.353149414062 728.094970703125 C 1606.18798828125 728.094970703125 1608.485595703125 730.3926391601562 1608.485595703125 733.2265014648438 L 1608.485595703125 750.0662841796875 L 1596.971557617188 761.7130737304688 Z"
+                                HeightRequest="33"
+                                HorizontalOptions="FillAndExpand"
+                                StrokeLineCap="Round"
+                                StrokeThickness="1"
+                                VerticalOptions="StartAndExpand"
+                                WidthRequest="117">
+
+                                <Path.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Select}"
+                                        TargetType="Path"
+                                        Value="True">
+                                        <Setter Property="Stroke" Value="White" />
+                                    </DataTrigger>
+                                </Path.Triggers>
+                            </Path>
+                            <Label
+                                FontSize="16"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="{Binding Name}"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    Margin="0,20,0,20"
+                    FontSize="14"
+                    HorizontalOptions="StartAndExpand"
+                    Text="Popular Products"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+                <Label
+                    Margin="0,20,0,20"
+                    FontSize="11"
+                    HorizontalOptions="EndAndExpand"
+                    Text="See More"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </StackLayout>
+
+            <ScrollView Orientation="Horizontal">
+                <StackLayout
+                    x:Name="PopularItems"
+                    BindableLayout.ItemsSource="{Binding ItemModelList}"
+                    Orientation="Horizontal"
+                    Spacing="15">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                HorizontalOptions="CenterAndExpand"
+                                IsClippedToBounds="False"
+                                VerticalOptions="StartAndExpand">
+
+                                <Image
+                                    Aspect="AspectFit"
+                                    HeightRequest="90"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Source="{Binding Image}"
+                                    VerticalOptions="FillAndExpand"
+                                    WidthRequest="90" />
+                                <sharpnado:MaterialFrame
+                                    Margin="0,0,0,0"
+                                    HeightRequest="10"
+                                    HorizontalOptions="CenterAndExpand"
+                                    MaterialBlurStyle="Dark"
+                                    MaterialTheme="AcrylicBlur"
+                                    VerticalOptions="EndAndExpand"
+                                    WidthRequest="78" />
+                                <Path
+                                    Aspect="Uniform"
+                                    Data="M 1185.71533203125 745.3170166015625 L 1168.35595703125 762.6763916015625 L 1168.35595703125 899.7066650390625 C 1168.35595703125 903.8645629882812 1171.738647460938 907.247314453125 1175.896484375 907.247314453125 L 1284.794555664062 907.247314453125 C 1284.793334960938 907.2141723632812 1284.792236328125 907.1803588867188 1284.791015625 907.1458740234375 C 1284.739501953125 905.6331176757812 1284.693603515625 902.95703125 1284.654663085938 899.1919555664062 C 1284.378295898438 872.5287475585938 1284.611572265625 804.8952026367188 1284.85595703125 752.8575439453125 C 1284.85595703125 748.69970703125 1281.473266601562 745.3170166015625 1277.3154296875 745.3170166015625 L 1185.71533203125 745.3170166015625 M 1185.301147460938 744.3170166015625 L 1277.3154296875 744.3170166015625 C 1282.0322265625 744.3170166015625 1285.85595703125 748.1407470703125 1285.85595703125 752.8575439453125 C 1285.406616210938 848.5526123046875 1285.510864257812 885.31494140625 1285.654541015625 899.1815795898438 C 1285.748413085938 908.2412719726562 1285.85595703125 908.247314453125 1285.85595703125 908.247314453125 L 1175.896484375 908.247314453125 C 1171.1796875 908.247314453125 1167.35595703125 904.4234619140625 1167.35595703125 899.7066650390625 L 1167.35595703125 762.26220703125 L 1185.301147460938 744.3170166015625 Z"
+                                    HeightRequest="163.93"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Stroke="#707070"
+                                    StrokeLineCap="Round"
+                                    StrokeThickness="1"
+                                    VerticalOptions="StartAndExpand"
+                                    WidthRequest="118.5" />
+                                <Label
+                                    Margin="5"
+                                    FontSize="13"
+                                    HorizontalOptions="FillAndExpand"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="2"
+                                    Text="{Binding Name}"
+                                    TextColor="White"
+                                    VerticalOptions="EndAndExpand"
+                                    VerticalTextAlignment="Center"
+                                    WidthRequest="100" />
+                                <Path
+                                    Margin="-10,-10,0,0"
+                                    Aspect="Uniform"
+                                    Data="M9.75,0l9.957,9.747L0,9.545Z"
+                                    Fill="Red"
+                                    HeightRequest="24"
+                                    HorizontalOptions="StartAndExpand"
+                                    Rotation="-45"
+                                    StrokeLineCap="Round"
+                                    StrokeThickness="1"
+                                    VerticalOptions="StartAndExpand"
+                                    WidthRequest="25" />
+                                <Image
+                                    Margin="10"
+                                    Aspect="AspectFill"
+                                    HeightRequest="20"
+                                    HorizontalOptions="EndAndExpand"
+                                    Source="favGray"
+                                    VerticalOptions="StartAndExpand"
+                                    WidthRequest="13" />
+                                <BoxView BackgroundColor="Transparent">
+                                    <BoxView.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.NavigateToDetailPageCommand, Source={x:Reference PopularItems}}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
+                                    </BoxView.GestureRecognizers>
+                                </BoxView>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    Margin="0,20,0,20"
+                    FontSize="14"
+                    HorizontalOptions="StartAndExpand"
+                    Text="Popular Toys"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+                <Label
+                    Margin="0,20,0,20"
+                    FontSize="11"
+                    HorizontalOptions="EndAndExpand"
+                    Text="See More"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </StackLayout>
+
+            <ScrollView Orientation="Horizontal">
+                <StackLayout
+                    BindableLayout.ItemsSource="{Binding ItemToyModelList}"
+                    Orientation="Horizontal"
+                    Spacing="15">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                                <Image
+                                    Aspect="AspectFit"
+                                    HeightRequest="90"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Source="{Binding Image}"
+                                    VerticalOptions="FillAndExpand"
+                                    WidthRequest="90" />
+                                <sharpnado:MaterialFrame
+                                    Margin="0,0,0,0"
+                                    HeightRequest="10"
+                                    HorizontalOptions="CenterAndExpand"
+                                    MaterialBlurStyle="Dark"
+                                    MaterialTheme="AcrylicBlur"
+                                    VerticalOptions="EndAndExpand"
+                                    WidthRequest="78" />
+                                <Path
+                                    Aspect="Uniform"
+                                    Data="M 1185.71533203125 745.3170166015625 L 1168.35595703125 762.6763916015625 L 1168.35595703125 899.7066650390625 C 1168.35595703125 903.8645629882812 1171.738647460938 907.247314453125 1175.896484375 907.247314453125 L 1284.794555664062 907.247314453125 C 1284.793334960938 907.2141723632812 1284.792236328125 907.1803588867188 1284.791015625 907.1458740234375 C 1284.739501953125 905.6331176757812 1284.693603515625 902.95703125 1284.654663085938 899.1919555664062 C 1284.378295898438 872.5287475585938 1284.611572265625 804.8952026367188 1284.85595703125 752.8575439453125 C 1284.85595703125 748.69970703125 1281.473266601562 745.3170166015625 1277.3154296875 745.3170166015625 L 1185.71533203125 745.3170166015625 M 1185.301147460938 744.3170166015625 L 1277.3154296875 744.3170166015625 C 1282.0322265625 744.3170166015625 1285.85595703125 748.1407470703125 1285.85595703125 752.8575439453125 C 1285.406616210938 848.5526123046875 1285.510864257812 885.31494140625 1285.654541015625 899.1815795898438 C 1285.748413085938 908.2412719726562 1285.85595703125 908.247314453125 1285.85595703125 908.247314453125 L 1175.896484375 908.247314453125 C 1171.1796875 908.247314453125 1167.35595703125 904.4234619140625 1167.35595703125 899.7066650390625 L 1167.35595703125 762.26220703125 L 1185.301147460938 744.3170166015625 Z"
+                                    HeightRequest="163.93"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Stroke="#707070"
+                                    StrokeLineCap="Round"
+                                    StrokeThickness="1"
+                                    VerticalOptions="StartAndExpand"
+                                    WidthRequest="118.5" />
+                                <Label
+                                    Margin="5"
+                                    FontSize="13"
+                                    HorizontalOptions="FillAndExpand"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="2"
+                                    Text="{Binding Name}"
+                                    TextColor="White"
+                                    VerticalOptions="EndAndExpand"
+                                    VerticalTextAlignment="Center"
+                                    WidthRequest="100" />
+                                <Path
+                                    Margin="-10,-10,0,0"
+                                    Aspect="Uniform"
+                                    Data="M9.75,0l9.957,9.747L0,9.545Z"
+                                    Fill="Red"
+                                    HeightRequest="24"
+                                    HorizontalOptions="StartAndExpand"
+                                    Rotation="-45"
+                                    StrokeLineCap="Round"
+                                    StrokeThickness="1"
+                                    VerticalOptions="StartAndExpand"
+                                    WidthRequest="25" />
+                                <Image
+                                    Margin="10"
+                                    Aspect="AspectFill"
+                                    HeightRequest="20"
+                                    HorizontalOptions="EndAndExpand"
+                                    Source="favGray"
+                                    VerticalOptions="StartAndExpand"
+                                    WidthRequest="13" />
+                                <BoxView BackgroundColor="Transparent">
+                                    <BoxView.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.NavigateToDetailPageCommand, Source={x:Reference PopularItems}}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
+                                    </BoxView.GestureRecognizers>
+                                </BoxView>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    Margin="0,20,0,20"
+                    FontSize="14"
+                    HorizontalOptions="StartAndExpand"
+                    Text="Popular Products"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+                <Label
+                    Margin="0,20,0,20"
+                    FontSize="11"
+                    HorizontalOptions="EndAndExpand"
+                    Text="See More"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </StackLayout>
+            <ScrollView Orientation="Horizontal">
+                <StackLayout
+                    x:Name="otherList"
+                    BindableLayout.ItemsSource="{Binding ItemModelList}"
+                    Orientation="Horizontal"
+                    Spacing="15">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                HorizontalOptions="CenterAndExpand"
+                                IsClippedToBounds="False"
+                                VerticalOptions="StartAndExpand">
+
+                                <Image
+                                    Aspect="AspectFit"
+                                    HeightRequest="90"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Source="{Binding Image}"
+                                    VerticalOptions="FillAndExpand"
+                                    WidthRequest="90" />
+                                <sharpnado:MaterialFrame
+                                    Margin="0,0,0,0"
+                                    HeightRequest="10"
+                                    HorizontalOptions="CenterAndExpand"
+                                    MaterialBlurStyle="Dark"
+                                    MaterialTheme="AcrylicBlur"
+                                    VerticalOptions="EndAndExpand"
+                                    WidthRequest="78" />
+                                <Path
+                                    Aspect="Uniform"
+                                    Data="M 1185.71533203125 745.3170166015625 L 1168.35595703125 762.6763916015625 L 1168.35595703125 899.7066650390625 C 1168.35595703125 903.8645629882812 1171.738647460938 907.247314453125 1175.896484375 907.247314453125 L 1284.794555664062 907.247314453125 C 1284.793334960938 907.2141723632812 1284.792236328125 907.1803588867188 1284.791015625 907.1458740234375 C 1284.739501953125 905.6331176757812 1284.693603515625 902.95703125 1284.654663085938 899.1919555664062 C 1284.378295898438 872.5287475585938 1284.611572265625 804.8952026367188 1284.85595703125 752.8575439453125 C 1284.85595703125 748.69970703125 1281.473266601562 745.3170166015625 1277.3154296875 745.3170166015625 L 1185.71533203125 745.3170166015625 M 1185.301147460938 744.3170166015625 L 1277.3154296875 744.3170166015625 C 1282.0322265625 744.3170166015625 1285.85595703125 748.1407470703125 1285.85595703125 752.8575439453125 C 1285.406616210938 848.5526123046875 1285.510864257812 885.31494140625 1285.654541015625 899.1815795898438 C 1285.748413085938 908.2412719726562 1285.85595703125 908.247314453125 1285.85595703125 908.247314453125 L 1175.896484375 908.247314453125 C 1171.1796875 908.247314453125 1167.35595703125 904.4234619140625 1167.35595703125 899.7066650390625 L 1167.35595703125 762.26220703125 L 1185.301147460938 744.3170166015625 Z"
+                                    HeightRequest="163.93"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Stroke="#707070"
+                                    StrokeLineCap="Round"
+                                    StrokeThickness="1"
+                                    VerticalOptions="StartAndExpand"
+                                    WidthRequest="118.5" />
+                                <Label
+                                    Margin="5"
+                                    FontSize="13"
+                                    HorizontalOptions="FillAndExpand"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="2"
+                                    Text="{Binding Name}"
+                                    TextColor="White"
+                                    VerticalOptions="EndAndExpand"
+                                    VerticalTextAlignment="Center"
+                                    WidthRequest="100" />
+                                <Path
+                                    Margin="-10,-10,0,0"
+                                    Aspect="Uniform"
+                                    Data="M9.75,0l9.957,9.747L0,9.545Z"
+                                    Fill="Red"
+                                    HeightRequest="24"
+                                    HorizontalOptions="StartAndExpand"
+                                    Rotation="-45"
+                                    StrokeLineCap="Round"
+                                    StrokeThickness="1"
+                                    VerticalOptions="StartAndExpand"
+                                    WidthRequest="25" />
+                                <Image
+                                    Margin="10"
+                                    Aspect="AspectFill"
+                                    HeightRequest="20"
+                                    HorizontalOptions="EndAndExpand"
+                                    Source="favGray"
+                                    VerticalOptions="StartAndExpand"
+                                    WidthRequest="13" />
+                                <BoxView BackgroundColor="Transparent">
+                                    <BoxView.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.NavigateToDetailPageCommand, Source={x:Reference PopularItems}}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
+                                    </BoxView.GestureRecognizers>
+                                </BoxView>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+
+        </StackLayout>
+    </ScrollView>
+
+</view:BaseView>

@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<view:BaseView
+    x:Class="DarkStore.View.DetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:view="clr-namespace:DarkStore.View"
+   
+    BackgroundColor="Black"
+    NavigationPage.HasNavigationBar="False">
+    <Grid>
+        <StackLayout Padding="20" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Image
+                    Grid.Column="0"
+                    Source="arrow"
+                    VerticalOptions="CenterAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Back" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Grid.Column="1"
+                    FontSize="18"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding Name}"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand" />
+                <Image
+                    Grid.Column="2"
+                    HorizontalOptions="EndAndExpand"
+                    Source="menu"
+                    VerticalOptions="CenterAndExpand" />
+            </Grid>
+            <ScrollView>
+                <StackLayout>
+                    <Grid
+                        ColumnDefinitions="10,*,10"
+                        ColumnSpacing="10"
+                        RowDefinitions="10,*,10"
+                        RowSpacing="10">
+                        <Image
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Aspect="AspectFit"
+                            HeightRequest="300"
+                            Source="{Binding Image}"
+                            WidthRequest="200" />
+                        <Image
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Aspect="AspectFit"
+                            HeightRequest="30"
+                            HorizontalOptions="EndAndExpand"
+                            Source="fav"
+                            VerticalOptions="StartAndExpand"
+                            WidthRequest="30" />
+                        <Grid
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Margin="10,0,10,0"
+                            HeightRequest="12">
+                            <BoxView
+                                BackgroundColor="#707070"
+                                HeightRequest="1"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="CenterAndExpand" />
+                            <Rectangle
+                                Fill="White"
+                                HeightRequest="10"
+                                HorizontalOptions="Start"
+                                Stroke="Black"
+                                StrokeThickness="2"
+                                VerticalOptions="CenterAndExpand"
+                                WidthRequest="40" />
+                        </Grid>
+                        <Grid
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
+                            Grid.Column="0"
+                            Margin="0,10,0,10"
+                            WidthRequest="12">
+                            <BoxView
+                                BackgroundColor="#707070"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                WidthRequest="1" />
+                            <Rectangle
+                                Fill="White"
+                                HeightRequest="40"
+                                HorizontalOptions="CenterAndExpand"
+                                Stroke="Black"
+                                StrokeThickness="2"
+                                VerticalOptions="EndAndExpand"
+                                WidthRequest="10" />
+                        </Grid>
+                        <Grid
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Margin="10,0,10,0"
+                            HeightRequest="12">
+                            <BoxView
+                                BackgroundColor="#707070"
+                                HeightRequest="1"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="CenterAndExpand" />
+                            <Rectangle
+                                Fill="White"
+                                HeightRequest="10"
+                                HorizontalOptions="EndAndExpand"
+                                Stroke="Black"
+                                StrokeThickness="2"
+                                VerticalOptions="CenterAndExpand"
+                                WidthRequest="40" />
+                        </Grid>
+                        <Grid
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
+                            Grid.Column="2"
+                            Margin="0,10,0,10"
+                            WidthRequest="12">
+                            <BoxView
+                                BackgroundColor="#707070"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                WidthRequest="1" />
+                            <Rectangle
+                                Fill="White"
+                                HeightRequest="40"
+                                HorizontalOptions="CenterAndExpand"
+                                Stroke="Black"
+                                StrokeThickness="2"
+                                VerticalOptions="StartAndExpand"
+                                WidthRequest="10" />
+                        </Grid>
+                    </Grid>
+                    <StackLayout Margin="0,20,0,20" Orientation="Horizontal">
+                        <Label
+                            Grid.Column="1"
+                            FontSize="28"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding Price}"
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand" />
+                        <Grid>
+                            <Path
+                                Aspect="Uniform"
+                                Data="M 1596.553955078125 760.7130737304688 L 1607.485595703125 749.6553955078125 L 1607.485595703125 733.2265014648438 C 1607.485595703125 730.9483642578125 1605.6318359375 729.094970703125 1603.353149414062 729.094970703125 L 1505.845825195312 729.094970703125 L 1494.93505859375 740.1318969726562 L 1494.93505859375 756.5806884765625 C 1494.93505859375 758.8593139648438 1496.788452148438 760.7130737304688 1499.066528320312 760.7130737304688 L 1596.553955078125 760.7130737304688 M 1596.971557617188 761.7130737304688 L 1499.066528320312 761.7130737304688 C 1496.232666015625 761.7130737304688 1493.93505859375 759.4154663085938 1493.93505859375 756.5806884765625 L 1493.93505859375 739.7210693359375 L 1505.42822265625 728.094970703125 L 1603.353149414062 728.094970703125 C 1606.18798828125 728.094970703125 1608.485595703125 730.3926391601562 1608.485595703125 733.2265014648438 L 1608.485595703125 750.0662841796875 L 1596.971557617188 761.7130737304688 Z"
+                                HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                Stroke="White"
+                                StrokeLineCap="Round"
+                                StrokeThickness="1"
+                                VerticalOptions="StartAndExpand"
+                                WidthRequest="127" />
+                            <Label
+                                FontSize="16"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Add to Cart"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </StackLayout>
+                    <Label
+                        FontSize="25"
+                        HorizontalOptions="StartAndExpand"
+                        Text="DETAIL"
+                        TextColor="White" />
+                    <Label
+                        FontFamily="Arial"
+                        FontSize="14"
+                        HorizontalOptions="StartAndExpand"
+                        Text="Lorem Ipsum is simply dummy text of the printing and  typesetting industry. Lorem Ipsum has been the  industry's standard dummy text ever since the 1500s,  when an unknown printer took a galley of type and  scrambled it to make a type specimen book. It has  survived not only five centuries, but also the leap into  electronic typesetting, remaining essentially unchanged.  It was popularized in the 1960s with the release of  Letterset sheets containing Lorem Ipsum passages, and  more recently with desktop publishing software like  Aldus PageMaker including versions of Lorem Ipsum"
+                        TextColor="White" />
+                </StackLayout>
+            </ScrollView>
+
+        </StackLayout>
+        <Grid   HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
+             <Path
+            Aspect="Uniform"
+            Data="M1678.754,857.394V808.585h-24.121c-16.479,0-29.836,12.084-29.836,26.989v21.82Z"
+            HeightRequest="48"
+            HorizontalOptions="EndAndExpand"
+            Stroke="Red"
+            Fill="Red"
+            StrokeLineCap="Round"
+            StrokeThickness="1"
+            VerticalOptions="EndAndExpand"
+            WidthRequest="53" />
+             <Image
+              
+                HorizontalOptions="CenterAndExpand"
+                Source="shopping_cart"
+                VerticalOptions="CenterAndExpand" />
+        </Grid>
+       
+    </Grid>
+
+
+</view:BaseView>
